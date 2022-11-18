@@ -5,7 +5,6 @@ import { CardsContext } from '../contexts/CardsContext.js';
 import { withRouter } from 'react-router-dom';
 
 function Main(props) {
-  console.log(props.isLoggedIn);
     const currentUser = useContext(CurrentUserContext);
     const cards = useContext(CardsContext);
 
