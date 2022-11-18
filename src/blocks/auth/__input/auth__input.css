@@ -1,0 +1,26 @@
+.auth__input {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #CCCCCC;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #CCCCCC;
+    width: 358px;
+    min-height: 27px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.auth__input:focus {
+    color: white;
+}
+
+.auth__input:first-of-type {
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
