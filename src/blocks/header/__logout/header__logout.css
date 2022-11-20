@@ -10,6 +10,7 @@
     height: 22px;
     box-sizing: content-box;
     border-color: transparent;
+    padding: 0;
 }
 
 .header__logout:hover {

@@ -3,12 +3,12 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 14px;
+    line-height: 17px;
     color: #CCCCCC;
     background-color: transparent;
     border: 0;
     border-bottom: 2px solid #CCCCCC;
-    width: 358px;
+    width: 260px;
     min-height: 27px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -23,4 +23,15 @@
 .auth__input:first-of-type {
     margin-bottom: 30px;
     margin-top: 50px;
+}
+
+@media screen and (min-width: 748px) {
+    .auth__input {
+        width: 358px;
+        line-height: 14px;
+    }
+
+    .auth__input:first-of-type {
+        margin-top: 40px;
+    }
 }
