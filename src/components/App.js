@@ -21,7 +21,7 @@ import success from "../images/success.svg";
 import fail from "../images/fail.svg";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -41,10 +41,10 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      api
-        .getUserInfo()
-        .then((data) => {
-          setCurrentUser(data);
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+        .then((values) => {
+          setCurrentUser(values[0]);
+          setCards(values[1]);
         })
         .catch((err) => {
           console.log(err);
@@ -104,43 +104,30 @@ function App() {
     setUserData(user.data);
     setIsLoggedIn(true);
     history.push("/");
-    api
-      .getInitialCards()
-      .then((cardList) => {
-        setCards(cardList);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   useEffect(() => {
     checkToken();
   }, []);
 
-  const login = useCallback(async (email, password) => {
-    try {
-      const data = await auth.login(email, password);
-      if (!data) {
-        console.log("Что-то пошло не так");
-      }
-      if (data) {
-        localStorage.setItem("jwt", data.token);
-        setIsLoggedIn(true);
-        setUserData({
-          email: email,
-          password: password,
-        });
-        history.push("/");
-      }
-    } catch {}
-  }, []);
+  const login = async (email, password) => {
+    const data = await auth.login(email, password);
+    if (!data) {
+      console.log("Что-то пошло не так");
+    }
+    if (data) {
+      localStorage.setItem("jwt", data.token);
+      setIsLoggedIn(true);
+      setUserData({ email, password });
+      history.push("/");
+    }
+  };
 
-  const signOut = useCallback(() => {
+  const signOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     history.push("/signin");
-  });
+  };
 
   const register = useCallback(async (email, password) => {
     try {
