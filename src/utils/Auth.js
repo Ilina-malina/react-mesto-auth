@@ -1,6 +1,6 @@
 import React from "react";
 
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "http://moe-mesto.nomoredomains.club";
 
 export const register = async (email, password) => {
   const res = await fetch(`${BASE_URL}/signup`, {
@@ -17,7 +17,7 @@ export const login = async (email, password) => {
   const res = await fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
@@ -30,9 +30,10 @@ export const checkToken = async (token) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${token}`,
     },
   });
+  console.log(res);
   return checkResponse(res);
 };
 

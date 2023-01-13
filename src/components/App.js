@@ -53,7 +53,7 @@ function App() {
   }, [isLoggedIn]);
 
   const handleLike = (card) => {
-    const isLiked = card.likes.some((item) => item._id === currentUser._id);
+    const isLiked = card.likes.some((item) => item === currentUser._id);
     if (isLiked) {
       api
         .deleteLike(card._id)
@@ -101,7 +101,8 @@ function App() {
       console.log("Invalid user");
       return;
     }
-    setUserData(user.data);
+    setUserData(user);
+
     setIsLoggedIn(true);
     history.push("/");
   };
@@ -118,7 +119,7 @@ function App() {
     if (data) {
       localStorage.setItem("jwt", data.token);
       setIsLoggedIn(true);
-      setUserData({ email, password });
+      setUserData({ email: email, password: password });
       history.push("/");
     }
   };
