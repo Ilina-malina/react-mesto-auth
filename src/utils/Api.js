@@ -77,6 +77,6 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: "http://moe-mesto.nomoredomains.club",
+  baseUrl: "https://api.moe-mesto.nomoredomains.club",
 });
 
